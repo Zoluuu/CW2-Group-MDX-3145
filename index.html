@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lessons</title>
     <script src="https://unpkg.com/vue"></script>
+
+    <style>
+
+
+
+    </style>
     <body>
       <div id="store">{{product}}</div>
       <script>
@@ -15,11 +21,11 @@
             product: [],
           },
           created: function () {
-            console.log("http://localhost:3000").then(function (response) {
-              response.json().then(function (json) {
-                StorageEvent.product = json;
-                console.log(json);
-              });
+            fetch("http://localhost:3000/lessons")
+            .then(response => response.json())
+            .then(data => {
+              console.log(data);
+              this.product = data.lessons;
             });
           },
         });
